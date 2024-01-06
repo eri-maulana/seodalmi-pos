@@ -9,6 +9,7 @@ function format_uang($angka)
 function terbilang($angka)
 {
    $angka      = abs($angka);
+
    $baca       = [
       '',         // index 0
       'satu',     // index 1
@@ -23,6 +24,7 @@ function terbilang($angka)
       'sepuluh',  // index 10
       'sebelas'   // index 11
    ];
+   
    $terbilang  = '';
 
    if ($angka < 12) {
@@ -48,10 +50,10 @@ function terbilang($angka)
       $terbilang = terbilang($angka / 1000) . ' ratus' . terbilang($angka % 1000);
    } elseif ($angka < 1000000000) {
       // 1.000.000 sampai 999.999.999
-      $terbilang = terbilang($angka / 1000000) . ' ratus' . terbilang($angka % 1000000);
+      $terbilang = terbilang($angka / 1000000) . ' juta' . terbilang($angka % 1000000);
    }
 
-   return $terbilang;
+   return $terbilang; 
 }
 
 function tanggal_indonesia($tgl, $tampil_hari = true)
