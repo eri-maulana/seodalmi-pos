@@ -38,13 +38,13 @@
                  </li>
                  <li class="nav-header">MASTER</li>
                  <li class="nav-item">
-                     <a href="#" class="nav-link">
+                     <a href="{{ route('kategori.index') }}" class="nav-link">
                         <i class="fas fa-cube mr-2"></i>
                          <p>
                              Kategori
                          </p>
                      </a>
-                 </li>
+                 </li> 
                  <li class="nav-item">
                      <a href="#" class="nav-link">
                         <i class="fas fa-cubes mr-2"></i>
