@@ -20,9 +20,11 @@
                                 class="fa fa-plus-circle"> Tambah</i></button>
                         <button onclick="deleteSelected('{{ route('produk.delete_selected') }}')"
                             class="btn btn-danger btn-xs btn-flat "><i class="fa fa-trash-alt"> Hapus</i></button>
+                        <button onclick="cetakBarcode('{{ route('produk.cetak_barcode') }}')"
+                            class="btn btn-info btn-xs btn-flat "><i class="fa fa-barcode"> Barcode</i></button>
                     </div>
                     <div class="card-body table-responsive">
-                        <form action="" class="form-produk">
+                        <form action="" method="post" class="form-produk">
                             @csrf
                             <table class="table table-bordered">
                                 <thead>
@@ -188,5 +190,19 @@
             }
         }
 
+        function cetakBarcode(url) {
+        if ($('input:checked').length < 1) {
+            alert('Pilih data yang akan dicetak');
+            return;
+        } else if ($('input:checked').length < 3) {
+            alert('Pilih minimal 3 data untuk dicetak');
+            return;
+        } else {
+            $('.form-produk')
+                .attr('target', '_blank')
+                .attr('action', url)
+                .submit();
+        }
+    }
     </script>
 @endpush
