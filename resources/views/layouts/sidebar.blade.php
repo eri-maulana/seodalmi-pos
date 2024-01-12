@@ -2,7 +2,7 @@
  <aside class="main-sidebar elevation-4 sidebar-light-navy">
      <!-- Brand Logo -->
      <a href="/" class="brand-link bg-light ">
-         <img src="{{ asset('img/sdm.jpg') }}" alt="Logo"
+         <img src="{{ asset('img/sdm.png') }}" alt="Logo"
              class="brand-image img-circle elevation-3" style="opacity: .8">
          <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
      </a>
@@ -12,7 +12,7 @@
          <!-- Sidebar user panel (optional) -->
          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
              <div class="image">
-                 <img src="{{ asset('img/sdm.jpg') }}" class="img-circle elevation-2"
+                 <img src="{{ asset('img/sdm.png') }}" class="img-circle elevation-2"
                      alt="User Image">
              </div>
              <div class="info">
@@ -54,7 +54,7 @@
                      </a>
                  </li>
                  <li class="nav-item">
-                     <a href="#" class="nav-link">
+                     <a href="{{ route('member.index') }}" class="nav-link">
                         <i class="far fa-id-card mr-2"></i>
                          <p>
                              Member

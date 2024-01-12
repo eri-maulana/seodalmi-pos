@@ -24,6 +24,7 @@
                     <span style="display:block; padding-left: 5px;margin-left:5px; ">
                         {!! DNS2D::getBarcodeHTML($produk->kode_produk, 'QRCODE') !!}
                     </span>
+                    {{-- <img src="data:image/png;base64,{{ DNS1D::getBarcodePNG($produk->kode_produk, 'C39+') }}" alt="{{ $produk->kode_produk }}"> --}}
                     <br>
                     {{ $produk->kode_produk }}
                 </td>

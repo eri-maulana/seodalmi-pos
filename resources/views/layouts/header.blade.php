@@ -36,13 +36,13 @@
 
         <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="{{ asset('img/sdm.jpg') }}" class="user-image" alt="User Image">
+                <img src="{{ asset('img/sdm.png') }}" class="user-image" alt="User Image">
                 <span class="hidden-xs">{{ auth()->user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
 
                 <li class="user-header">
-                    <img src="{{ asset('img/sdm.jpg') }}" class="img-circle" alt="User Image">
+                    <img src="{{ asset('img/sdm.png') }}" class="img-circle" alt="User Image">
                     <p>
                         {{ auth()->user()->name }}
                         <small class="text-xs">{{ auth()->user()->email }}</small>

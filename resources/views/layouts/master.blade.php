@@ -8,7 +8,7 @@
 
     <meta name="csrf_token" content="{{ csrf_token() }}">
 
-    <link rel="shortcut icon" href="{{ asset('img/sdm.jpg') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('img/sdm.png') }}" type="image/x-icon">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"

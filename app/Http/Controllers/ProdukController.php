@@ -37,7 +37,7 @@ class ProdukController extends Controller
                 ';
             })
             ->addColumn('kode_produk', function ($produk) {
-            return '<span class="label label-success">' . $produk->kode_produk . '</span>';
+            return '<span class="badge badge-secondary">' . $produk->kode_produk . '</span>';
             })
             ->addColumn('harga_beli', function ($produk) {
                 return format_uang($produk->harga_beli);

@@ -8,7 +8,7 @@
         <div class="card-body login-card-body">
             <div class="login-logo">
                 <a href="{{ url('/') }}">
-                    <img src="{{ asset('img/sdm.jpg') }}" class="img-fluid" alt="logo" width="100">
+                    <img src="{{ asset('img/sdm.png') }}" class="img-fluid" alt="logo" width="100">
                 </a>
             </div>
 
