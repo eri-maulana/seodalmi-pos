@@ -19,14 +19,12 @@
     <table width="100%">
         <tr >
             @foreach ($dataproduk as $produk)
-                <td class="text-center center" style="border: 1px solid #333; ">
+                <td class="text-center" style="border: 1px solid #333; ">
                     <p>{{ $produk->nama_produk }} - Rp. {{ format_uang($produk->harga_jual) }}</p>
-                    <span style="display:block; padding-left: 5px;margin-left:5px; ">
-                        {!! DNS2D::getBarcodeHTML($produk->kode_produk, 'QRCODE') !!}
-                    </span>
-                    {{-- <img src="data:image/png;base64,{{ DNS1D::getBarcodePNG($produk->kode_produk, 'C39+') }}" alt="{{ $produk->kode_produk }}"> --}}
+                    <img src="data:image/png;base64,{{ DNS1D::getBarcodePNG("$produk->kode_produk", 'C39') }}"
+                                        alt="qrcode" heigh="300" width="200">
                     <br>
-                    {{ $produk->kode_produk }}
+                    <p class="text-center">{{ $produk->kode_produk }}</p>
                 </td>
                 @if ($no++ % 3 == 0)
         </tr>
