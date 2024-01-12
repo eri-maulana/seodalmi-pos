@@ -17,20 +17,25 @@ class KategoriController extends Controller
 
     public function data()
     {
-        $kategori = Kategori::orderBy('id_kategori', 'desc')->get();
+        $kategori = Kategori::orderBy('id_kategori')->get();
 
         return datatables()
             ->of($kategori)
             ->addIndexColumn()
+            ->addColumn('select_all', function ($kategori) {
+                return '
+                    <input type="checkbox" name="id_kategori[]" value="' . $kategori->id_kategori . '">
+                ';
+            })
             ->addColumn('aksi', function ($kategori) {
                 return '
                     <div class=" text-center">
-                        <button onclick="editForm(`' . route('kategori.update', $kategori->id_kategori) . '`)" class="btn btn-xs btn-warning btn-flat"><i class="fa fa-pencil-alt"></i></button>
-                        <button onclick="deleteData(`' . route('kategori.destroy', $kategori->id_kategori) . '`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash-alt"></i></button>
+                        <button type="button" onclick="editForm(`' . route('kategori.update', $kategori->id_kategori) . '`)" class="btn btn-xs btn-warning btn-flat"><i class="fa fa-pencil-alt"></i></button>
+                        <button type="button" onclick="deleteData(`' . route('kategori.destroy', $kategori->id_kategori) . '`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash-alt"></i></button>
                     </div>
                 ';
             })
-            ->rawColumns(['aksi'])
+            ->rawColumns(['aksi', 'select_all'])
             ->make(true);
     }
 
@@ -91,6 +96,16 @@ class KategoriController extends Controller
     {
         $kategori = Kategori::find($id);
         $kategori->delete();
+
+        return response(null, 204);
+    }
+
+    public function deleteKategori(Request $request)
+    {
+        foreach ($request->id_kategori as $id) {
+            $kategori = Kategori::find($id);
+            $kategori->delete();
+        }
 
         return response(null, 204);
     }

@@ -18,15 +18,23 @@
                     <div class="card-header">
                         <button onclick="addForm('{{ route('kategori.store') }}')" class="btn btn-dark btn-xs btn-flat "><i
                                 class="fa fa-plus-circle"> Tambah</i></button>
+                        <button onclick="deleteKategori('{{ route('kategori.delete_kategori') }}')"
+                            class="btn btn-danger btn-xs btn-flat "><i class="fa fa-trash-alt"> Hapus</i></button>
                     </div>
                     <div class="card-body table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <th width="5%">No</th>
-                                <th>Kategori</th>
-                                <th width="15%" class="text-center"><i class="fa fa-cog"></i></th>
-                            </thead>
-                        </table>
+                        <form action="" method="post" class="form-kategori">
+                            @csrf
+                            <table class="table table-bordered">
+                                <thead>
+                                    <th width="7%">
+                                        <input type="checkbox" name="select_all" id="select_all">
+                                    </th>
+                                    <th width="5%">No</th>
+                                    <th>Kategori</th>
+                                    <th width="15%" class="text-center"><i class="fa fa-cog"></i></th>
+                                </thead>
+                            </table>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -44,12 +52,26 @@
                 rocessing: true,
                 autoWidth: false,
                 ajax: {
-                   url: '{{ route('kategori.data') }}',
+                    url: '{{ route('kategori.data') }}',
                 },
-                columns: [
-                    {data: 'DT_RowIndex', searchable: false, sortable: false},
-                    {data: 'nama_kategori'},
-                    {data: 'aksi', searchable: false, sortable: false},
+                columns: [{
+                        data: 'select_all',
+                        searchable: false,
+                        sortable: false
+                    },
+                    {
+                        data: 'DT_RowIndex',
+                        searchable: false,
+                        sortable: false
+                    },
+                    {
+                        data: 'nama_kategori'
+                    },
+                    {
+                        data: 'aksi',
+                        searchable: false,
+                        sortable: false
+                    },
                 ]
             });
 
@@ -65,7 +87,11 @@
                             return;
                         });
                 }
-            })
+            });
+
+            $('[name=select_all]').on('click', function() {
+                $(':checkbox').prop('checked', this.checked);
+            });
         });
 
         function addForm(url) {
@@ -91,25 +117,43 @@
                 .done((response) => {
                     $('#modal-form [name=nama_kategori]').val(response.nama_kategori);
                 })
-                .fail ((errors) => {
+                .fail((errors) => {
                     alert('tidak dapat menampilkan data');
                     return;
                 })
         }
 
-        function deleteData(url){
-            if(confirm('yakin ingin menghapus data? '))
-            $.post(url, {
-                '_token': $('[name=csrf_token]').attr('content'),
-                '_method': 'delete'
-            })
+        function deleteData(url) {
+            if (confirm('yakin ingin menghapus data? '))
+                $.post(url, {
+                    '_token': $('[name=csrf_token]').attr('content'),
+                    '_method': 'delete'
+                })
                 .done((response) => {
                     table.ajax.reload();
                 })
-                .fail ((errors) => {
+                .fail((errors) => {
                     alert('tidak dapat menghapus data');
                     return;
                 });
+        }
+
+        function deleteKategori(url) {
+            if ($('input:checked').length > 1) {
+                if (confirm('yakin ingin menghapus data terpilih ?')) {
+                    $.post(url, $('.form-kategori').serialize())
+                        .done((response) => {
+                            table.ajax.reload();
+                        })
+                        .fail((errors) => {
+                            alert('tidak dapat menghapus data');
+                            return;
+                        });
+                }
+            } else {
+                alert('pilih data yang akan dihapus! ');
+                return;
+            }
         }
     </script>
 @endpush

@@ -32,6 +32,7 @@ Route::middleware([
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/kategori/data', [KategoriController::class, 'data'])->name('kategori.data');
     Route::resource('/kategori', KategoriController::class);
+    Route::post('/kategori/delete-kategori', [KategoriController::class, 'deleteKategori'])->name('kategori.delete_kategori');
 
     Route::get('/produk/data', [ProdukController::class, 'data'])->name('produk.data');
     Route::post('/produk/delete-selected', [ProdukController::class, 'deleteSelected'])->name('produk.delete_selected');
